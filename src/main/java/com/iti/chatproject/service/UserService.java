@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -19,6 +21,15 @@ public class UserService {
 
     public User addUser(User user) {
         return userEntityRepository.save(user);
+    }
+
+    public User updateUserPassword(String id, String password){
+        Optional<User> user = userEntityRepository.findById(id);
+        if(user.isEmpty()) return null;
+        else{
+            user.get().setUserPassword(password);
+            return userEntityRepository.save(user.get());
+        }
     }
 
 }

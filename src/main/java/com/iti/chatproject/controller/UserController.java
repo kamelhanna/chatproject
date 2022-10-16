@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class UserController {
@@ -24,6 +25,12 @@ public class UserController {
     @PostMapping("/user")
     public @ResponseBody User addUser(@RequestBody User user){
         return userService.addUser(user);
+    }
+
+    @PostMapping("/user/update")
+    public @ResponseBody User updateUser(@RequestBody String id, String password){
+        return userService.updateUserPassword(id,password);
+
     }
 
 }
