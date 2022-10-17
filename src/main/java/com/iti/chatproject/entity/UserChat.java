@@ -1,22 +1,24 @@
 package com.iti.chatproject.entity;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "user_chat")
 public class UserChat {
     @EmbeddedId
     private UserChatId id;
 
-    public UserChatId getId() {
-        return id;
-    }
-
-    public void setId(UserChatId id) {
-        this.id = id;
-    }
-
-    //TODO [JPA Buddy] generate columns from DB
+    @MapsId("userChatUserId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_chat_user_id", nullable = false)
+    private User userChatUser;
 }
