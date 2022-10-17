@@ -14,16 +14,16 @@ public class UserService {
     @Autowired
     private UserEntityRepository userEntityRepository;
 
-    /*public User addUser(){
-        return userEntityRepository.save(User.builder().userEmail("kamel")
+    public User getUser(){
+        return userEntityRepository.save(User.builder().id(2l).userEmail("kamel")
                 .userPassword("Kamel").userLogin("Kamel").build());
-    }*/
+    }
 
     public User addUser(User user) {
         return userEntityRepository.save(user);
     }
 
-    public User updateUserPassword(String id, String password){
+    public User updateUserPassword(Long id, String password){
         Optional<User> user = userEntityRepository.findById(id);
         if(user.isEmpty()) return null;
         else{

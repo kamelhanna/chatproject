@@ -17,10 +17,10 @@ public class UserController {
     private UserService userService;
 
 
-    /*@GetMapping("user")
-    public String addUser(){
-        return userService.addUser().getUserLogin();
-    }*/
+    @GetMapping("/user")
+    public @ResponseBody User getUser(){
+        return userService.getUser();
+    }
 
     @PostMapping("/user")
     public @ResponseBody User addUser(@RequestBody User user){
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/user/update")
-    public @ResponseBody User updateUser(@RequestBody String id, String password){
+    public @ResponseBody User updateUser(@RequestBody Long id, @RequestBody String password){
         return userService.updateUserPassword(id,password);
 
     }

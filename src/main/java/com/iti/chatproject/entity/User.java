@@ -13,9 +13,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false, length = 32)
-    private String id;
+    private Long id;
 
     @Column(name = "user_login")
     private String userLogin;
