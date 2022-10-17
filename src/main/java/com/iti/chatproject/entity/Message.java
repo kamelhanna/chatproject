@@ -7,6 +7,7 @@ import java.time.Instant;
 @Table(name = "message")
 public class Message {
     @Id
+
     @Column(name = "message_id", nullable = false, length = 32)
     private String id;
 
@@ -16,6 +17,14 @@ public class Message {
     @Lob
     @Column(name = "message_text")
     private String messageText;
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "message_id")
+    private Chat messageChat;*/
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User messageUser;*/
 
     public String getId() {
         return id;
@@ -40,5 +49,21 @@ public class Message {
     public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
+
+    /*public Chat getMessageChat() {
+        return messageChat;
+    }
+
+    public void setMessageChat(Chat messageChat) {
+        this.messageChat = messageChat;
+    }*/
+
+    /*public User getMessageUser() {
+        return messageUser;
+    }
+
+    public void setMessageUser(User messageUser) {
+        this.messageUser = messageUser;
+    }*/
 
 }

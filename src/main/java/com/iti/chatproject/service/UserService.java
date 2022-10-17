@@ -5,9 +5,7 @@ import com.iti.chatproject.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -15,7 +13,7 @@ public class UserService {
     private UserEntityRepository userEntityRepository;
 
     public User getUser(){
-        return userEntityRepository.save(User.builder().id(2l).userEmail("kamel")
+        return userEntityRepository.save(User.builder().id("121").userEmail("kamel")
                 .userPassword("Kamel").userLogin("Kamel").build());
     }
 
@@ -23,7 +21,7 @@ public class UserService {
         return userEntityRepository.save(user);
     }
 
-    public User updateUserPassword(Long id, String password){
+    public User updateUserPassword(String  id, String password){
         Optional<User> user = userEntityRepository.findById(id);
         if(user.isEmpty()) return null;
         else{
