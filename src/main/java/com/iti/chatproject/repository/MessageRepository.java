@@ -1,12 +1,9 @@
 package com.iti.chatproject.repository;
 
-import com.iti.chatproject.entity.User;
+import com.iti.chatproject.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public interface UserEntityRepository extends JpaRepository<User, String> {
-
+public interface MessageRepository extends JpaRepository<Message, String> {
 }

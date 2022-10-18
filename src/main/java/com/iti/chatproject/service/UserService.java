@@ -12,22 +12,21 @@ public class UserService {
     @Autowired
     private UserEntityRepository userEntityRepository;
 
-    public User getUser(){
-        return userEntityRepository.save(User.builder().id("121").userEmail("kamel")
+    /*public User getUser(){
+        return userEntityRepository.save(User.builder().userEmail("kamel")
                 .userPassword("Kamel").userLogin("Kamel").build());
-    }
+    }*/
 
     public User addUser(User user) {
         return userEntityRepository.save(user);
     }
 
-    public User updateUserPassword(String  id, String password){
-        Optional<User> user = userEntityRepository.findById(id);
-        if(user.isEmpty()) return null;
-        else{
-            user.get().setUserPassword(password);
-            return userEntityRepository.save(user.get());
-        }
+    public User updateUser(User user){
+
+            return userEntityRepository.save(user);
     }
 
+    public Optional<User> getUser(String id) {
+         return userEntityRepository.findById(id);
+    }
 }
