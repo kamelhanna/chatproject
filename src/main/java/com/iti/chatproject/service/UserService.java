@@ -1,11 +1,11 @@
 package com.iti.chatproject.service;
 
 import com.iti.chatproject.entity.User;
+import com.iti.chatproject.exception.UserNotFoundException;
 import com.iti.chatproject.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserService {
@@ -22,11 +22,13 @@ public class UserService {
     }
 
     public User updateUser(User user){
-
             return userEntityRepository.save(user);
     }
 
-    public Optional<User> getUser(String id) {
-         return userEntityRepository.findById(id);
+    public User getUser(String id) {
+        if(userEntityRepository.existsById(id)) {
+            return userEntityRepository.findById(id).get();
+        }
+        throw new UserNotFoundException();
     }
 }

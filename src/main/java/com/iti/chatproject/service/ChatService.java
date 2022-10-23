@@ -4,6 +4,7 @@ import com.iti.chatproject.entity.Chat;
 import com.iti.chatproject.entity.User;
 import com.iti.chatproject.entity.UserChat;
 import com.iti.chatproject.entity.UserChatId;
+import com.iti.chatproject.exception.ChatNotFoundException;
 import com.iti.chatproject.repository.ChatEntityRepository;
 import com.iti.chatproject.repository.UserChatRepository;
 import com.iti.chatproject.repository.UserEntityRepository;
@@ -33,18 +34,17 @@ public class ChatService {
         return chatEntityRepository.findAll();
     }
 
-    public Optional<Chat> getChat(String id) {
-        return chatEntityRepository.findById(id);
+    public Chat getChat(String id) {
+        if(chatEntityRepository.existsById(id)) {
+            return chatEntityRepository.findById(id).get();
+        }
+        throw new ChatNotFoundException();
     }
 
 
-    public void addUserToChat(String chat_id, String user_id) {
-        UserChatId userChatId = UserChatId.builder().userChatChatId(chat_id).userChatUserId(user_id).build();
+    public void addUserToChat(UserChat userChat) {
 
-        userChatRepository.save(UserChat.builder()
-                .userChatUser(userEntityRepository.getById(user_id))
-                .id(userChatId)
-                .build());
+        userChatRepository.save(userChat);
 
     }
 }
