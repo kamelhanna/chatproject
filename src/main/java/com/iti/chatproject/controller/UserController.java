@@ -29,9 +29,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void>  addUser(@Valid @RequestBody UserDto userDto){
-        userService.addUser(mapstructMapper.userDtoToUser(userDto));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<UserDto>  addUser(@Valid @RequestBody UserDto userDto){
+        return new ResponseEntity<>(userService.addUser(userDto),HttpStatus.CREATED);
     }
 
     @PutMapping
