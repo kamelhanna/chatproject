@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UserDto {
 
+    private String id;
     private String userLogin;
 
     @NotEmpty
@@ -22,4 +23,14 @@ public class UserDto {
     @Email
     @NotNull
     private String userEmail;
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id='" + id + '\'' +
+                ", userLogin='" + userLogin + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.iti.chatproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,14 +30,12 @@ public class Message {
     @Column(name = "message_text")
     private String messageText;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_chat_id")
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     private Chat messageChat;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_user_id")
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     private User messageUser;
-
-
 
 }

@@ -8,6 +8,7 @@ import com.iti.chatproject.mapstruct.dto.ChatDto;
 import com.iti.chatproject.mapstruct.dto.MessageDto;
 import com.iti.chatproject.mapstruct.dto.UserChatDto;
 import com.iti.chatproject.mapstruct.dto.UserDto;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface MapStructMapper {
 
     UserDto userToUserDto(User user);
 
+    List<UserDto> usersToUserDtos(List<User> users);
+
     ChatDto chatToChatDto(Chat chat);
 
     Chat chatDtoToChat(ChatDto chatDto);
@@ -27,10 +30,5 @@ public interface MapStructMapper {
 
     UserChat userChatDtoToUserChat(UserChatDto userChatDto);
 
-    MessageDto MessageToMessageDto(Message message);
-
     Message messageDtoToMessage(MessageDto messageDto);
-
-
-
 }

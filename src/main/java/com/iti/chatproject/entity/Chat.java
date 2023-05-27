@@ -28,7 +28,7 @@ public class Chat {
     @Column(name = "chat_password", length = 64)
     private String chatPassword;
 
-    @OneToMany(mappedBy = "messageChat")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "messageChat", cascade = CascadeType.ALL)
     private List<Message> messageList;
 
 }

@@ -47,4 +47,8 @@ public class ChatService {
         userChatRepository.save(userChat);
 
     }
+
+    public List<Chat> getChatsForUser(String id) {
+        return chatEntityRepository.findAllChatsForUser(id);
+    }
 }
