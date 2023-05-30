@@ -10,6 +10,7 @@ import com.iti.chatproject.mapstruct.mapper.MapStructMapper;
 import com.iti.chatproject.service.ChatService;
 import com.iti.chatproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,8 +41,8 @@ public class ChatController {
     }
 
     @PostMapping("/{chat_id}/user/{user_id}")
-    public ResponseEntity<Void> addUserToChat(@PathVariable String chat_id,
-                                                @PathVariable String user_id){
+    public ResponseEntity<Void> addUserToChat(@PathVariable("chat_id") String chat_id,
+                                                @PathVariable("user_id") String user_id){
 
         UserChatId userChatId = UserChatId.builder().userChatChatId(chat_id).userChatUserId(user_id).build();
         UserChatDto userChatDto = UserChatDto.builder().userChatUser(userService.getUser(user_id)).id(userChatId).build();
@@ -59,6 +60,12 @@ public class ChatController {
     @GetMapping("/{id}")
     public ResponseEntity<ChatDto>  getChat(@PathVariable String id){
         return new ResponseEntity<>(mapStructMapper.chatToChatDto(chatService.getChat(id)),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<ChatDto>> gitAllChatsForUser(@PathVariable String id){
+        return new ResponseEntity<>(mapStructMapper.chatsToChatDtos(chatService.getChatsForUser(id)),
                 HttpStatus.OK);
     }
 

@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(generator = "system-uuid",strategy = GenerationType.AUTO)
@@ -22,16 +22,16 @@ public class User {
     @Column(name = "user_id", nullable = false, length = 32)
     private String id;
 
-    @Column(name = "user_login")
+    @Column(name = "username")
     private String userLogin;
 
-    @Column(name = "user_password", length = 64)
+    @Column(name = "password")
     private String userPassword;
 
     @Column(name = "user_email", length = 400)
     private String userEmail;
 
-    @OneToMany(mappedBy = "messageUser")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "messageUser", cascade = CascadeType.ALL)
     private List<Message> messageList;
 
 }
